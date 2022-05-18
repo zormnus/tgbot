@@ -1,0 +1,10 @@
+# created by virtualenv automatically
+investments.db
+users.json
+.env
+venv
+ChromeDriver
+*.json
+Parsing/WebPagesCopies
+.idea
+__pycache__
