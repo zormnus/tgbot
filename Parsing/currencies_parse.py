@@ -2,7 +2,7 @@ from datetime import datetime
 import logging
 import time
 from selenium import webdriver
-from variables import chromeDriver_path
+from Data.data import chromeDriver_path
 from bs4 import BeautifulSoup
 from utils.db_api.db_work import update_currencies_table
 from fake_useragent import UserAgent
@@ -12,7 +12,7 @@ def _update_all_currencies_page():
     browser_options = webdriver.ChromeOptions()
     userAgent = UserAgent()
     browser_options.add_argument(f"user-agent={userAgent.random}")
-    browser_options.headless = True
+    browser_options.headless = False
     driver = webdriver.Chrome(
         executable_path=chromeDriver_path,
         options=browser_options
@@ -20,8 +20,8 @@ def _update_all_currencies_page():
     try:
         driver.get('https://ru.tradingview.com/markets/currencies/rates-all/')
         time.sleep(3)
-        cookie_accept_btn = driver.find_element_by_class_name('content-YKkCvwjV')
-        cookie_accept_btn.click()
+        # cookie_accept_btn = driver.find_element_by_class_name('content-YKkCvwjV')
+        # cookie_accept_btn.click()
         while True:
             try:
                 load_more_btn = driver.find_element_by_class_name('tv-load-more__btn')

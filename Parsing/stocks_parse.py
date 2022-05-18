@@ -5,15 +5,15 @@ from datetime import datetime
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 from selenium import webdriver
-from variables import chromeDriver_path
+from Data.data import chromeDriver_path
 from utils.db_api.db_work import update_USA_stocks_table, update_Russia_stocks_table
 
 
 def _update_russia_stocks_page():
     browser_options = webdriver.ChromeOptions()
-    # userAgent = UserAgent()
-    # browser_options.add_argument(f"user-agent={userAgent.random}")
-    browser_options.headless = True
+    userAgent = UserAgent()
+    browser_options.add_argument(f"user-agent={userAgent.random}")
+    browser_options.headless = False
     driver = webdriver.Chrome(
         executable_path=chromeDriver_path,
         options=browser_options
@@ -21,8 +21,8 @@ def _update_russia_stocks_page():
     try:
         driver.get(f'https://ru.tradingview.com/markets/stocks-russia/market-movers-all-stocks/')
         time.sleep(3)
-        cookie_accept_btn = driver.find_element_by_class_name('content-YKkCvwjV')
-        cookie_accept_btn.click()
+        # cookie_accept_btn = driver.find_element_by_class_name('content-YKkCvwjV')
+        # cookie_accept_btn.click()
         while True:
             try:
                 load_more_btn = driver.find_element_by_class_name('loadButton-59hnCnPW')

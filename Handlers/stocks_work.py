@@ -12,7 +12,6 @@ from utils.db_api.db_work import get_stocks_info
 from Exceptions.exceptions import IncorrectTicker, EmptySubscribesList
 
 
-# Add stock
 @dp.message_handler(Command('addstock'), state=None)
 async def addstock_register(msg: Message):
     await msg.reply('Введите тикер компании', reply=False, reply_markup=allStocksMenu)
@@ -33,10 +32,6 @@ async def _enter_stock_ticker_add(message: Message, state: FSMContext):
         await state.finish()
 
 
-# ------------------------------------------------------------------------------------------------------
-
-
-# Delete stock
 @dp.message_handler(Command('deletestock'), state=None)
 async def deletestock_register(msg: Message):
     await msg.reply('Введите тикер компании', reply=False)
@@ -58,9 +53,6 @@ async def _enter_stock_ticker_delete(message: Message, state: FSMContext):
         await state.finish()
 
 
-# --------------------------------------------------------------------------------------------------------
-
-# Show stocks
 @dp.message_handler(Command('showstocks'), state=None)
 async def showstocks_register(msg: Message):
     try:
@@ -70,5 +62,3 @@ async def showstocks_register(msg: Message):
     except EmptySubscribesList as e:
         logging.info(msg=e.text)
         await msg.reply(text='Ваш список ценных бумаг пока что пуст', reply=False, reply_markup=stocksMenu)
-
-# ---------------------------------------------------------------------------------------------------------

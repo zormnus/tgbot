@@ -23,7 +23,6 @@ async def subscribes_monitoring(user_id: int):
                 for price in prices:
                     if float(price[0]) <= float(price[1]) <= float(current_price) \
                             or float(price[0]) >= float(price[1]) >= float(current_price):
-                        # Отправляем сообщение пользователю
                         await bot.send_message(user_id, text=f"{ticker} достиг цены {price[1]}!")
                         subscribes_price_delete(user_id, ticker, price[1])
             await asyncio.sleep(5)

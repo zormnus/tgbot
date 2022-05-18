@@ -12,6 +12,8 @@ async def set_default_commands(dp: Dispatcher):
                                           'котировкам из вашего списка'),
             types.BotCommand('getcurrencies', 'Получить актуальную информацию '
                                               'по курсу валют'),
+            types.BotCommand('subscribeadd', 'Добавить подписку на цену актива'),
+            types.BotCommand('subscribedelete', 'Удалить подписку на цену актива'),
             types.BotCommand('getsubscribes', 'Получить информацию по подпискам '
                                               'на цены активов')
         ]

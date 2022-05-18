@@ -7,8 +7,6 @@ from states.answers import Answers
 from variables import dp
 from utils.users_work import subscribe_price_add, subscribes_price_delete, get_subscribes_and_prices, get_subscribes_tickers
 
-__first_answer = ''
-
 
 @dp.message_handler(Command('subscribeadd'))
 async def subscribe_add(message: Message):

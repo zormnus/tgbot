@@ -4,3 +4,4 @@ env = Env()
 env.read_env()
 
 API_TOKEN = env.str('API_TOKEN')
+chromeDriver_path = env.str(r'CHROMEDRIVER_PATH')

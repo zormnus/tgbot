@@ -27,4 +27,3 @@ dp = Dispatcher(bot, storage=storage)
 logging.basicConfig(level=logging.DEBUG)
 existing_stocks_tickers = sorted(list(set(get_all_stocks_tickers())))
 existing_currencies_tickers = sorted(list(set(get_all_currencies_tickers())))
-chromeDriver_path = r'C:\Users\Макс\PycharmProjects\tgbot\ChromeDriver\chromedriver.exe'
