@@ -2,7 +2,7 @@ from datetime import datetime
 import logging
 import time
 from selenium import webdriver
-from Data.data import chromeDriver_path
+from Data.data import CHROMEDRIVER_PATH
 from bs4 import BeautifulSoup
 from utils.db_api.db_work import update_currencies_table
 from fake_useragent import UserAgent
@@ -12,9 +12,9 @@ def _update_all_currencies_page():
     browser_options = webdriver.ChromeOptions()
     userAgent = UserAgent()
     browser_options.add_argument(f"user-agent={userAgent.random}")
-    browser_options.headless = False
+    browser_options.headless = True
     driver = webdriver.Chrome(
-        executable_path=chromeDriver_path,
+        executable_path=CHROMEDRIVER_PATH,
         options=browser_options
     )
     try:

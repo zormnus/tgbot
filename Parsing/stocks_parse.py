@@ -5,7 +5,7 @@ from datetime import datetime
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 from selenium import webdriver
-from Data.data import chromeDriver_path
+from Data.data import CHROMEDRIVER_PATH
 from utils.db_api.db_work import update_USA_stocks_table, update_Russia_stocks_table
 
 
@@ -13,9 +13,9 @@ def _update_russia_stocks_page():
     browser_options = webdriver.ChromeOptions()
     userAgent = UserAgent()
     browser_options.add_argument(f"user-agent={userAgent.random}")
-    browser_options.headless = False
+    browser_options.headless = True
     driver = webdriver.Chrome(
-        executable_path=chromeDriver_path,
+        executable_path=CHROMEDRIVER_PATH,
         options=browser_options
     )
     try:
