@@ -25,16 +25,17 @@ async def _enter_stock_ticker_add(message: Message, state: FSMContext):
     try:
         check_ticker(answer, currencies=False)
         add_ticker(message.from_user.id, answer)
-        await message.reply(text=f'Успешно добавил котировки компании {answer} в ваш список!')
+        await message.reply(text=f'Успешно добавил котировки компании {answer} в ваш список!'
+                            , reply_markup=stocksMenu)
     except IncorrectTicker as e:
-        await message.reply(text=e.text)
+        await message.reply(text=e.text, reply_markup=stocksMenu)
     finally:
         await state.finish()
 
 
 @dp.message_handler(Command('deletestock'), state=None)
 async def deletestock_register(msg: Message):
-    await msg.reply('Введите тикер компании', reply=False)
+    await msg.reply('Введите тикер компании', reply=False, reply_markup=allStocksMenu)
     await Answers.deleteStockState.set()
 
 
@@ -46,10 +47,10 @@ async def _enter_stock_ticker_delete(message: Message, state: FSMContext):
         check_ticker(answer, currencies=False)
         delete_ticker(message.from_user.id, answer)
         await message.reply(text=f'Успешно удалил котировки компании {answer} из вашего списка!'
-                            , reply_markup=allStocksMenu)
+                            , reply_markup=stocksMenu)
         await state.finish()
     except IncorrectTicker as e:
-        await message.reply(text=e.text)
+        await message.reply(text=e.text, reply_markup=stocksMenu)
         await state.finish()
 
 
