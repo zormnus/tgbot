@@ -178,5 +178,5 @@ def get_stock_price(ticker: str) -> float:
         result = cursor.execute(f"""SELECT last_price FROM UsaStocksTable WHERE ticker = '{ticker}'""").fetchone()
         if result is None:
             result = cursor.execute(f"""SELECT last_price FROM RussiaStocksTable WHERE ticker = '{ticker}'""").fetchone()
-            return result[0][0:-3]
-        return result[0]
+            return float(result[0][0:-3])
+        return float(result[0])
